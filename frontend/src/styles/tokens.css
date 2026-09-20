@@ -1,0 +1,22 @@
+:root {
+  --bg-app: #f4f9fc;
+  --bg-sidebar: #e8f4fa;
+  --bg-tools: #eef7fb;
+  --text-primary: #0b2b4a;
+  --text-muted: #5a7a94;
+  --accent: #1e9fd8;
+  --accent-hover: #157bb0;
+  --ai-gradient: linear-gradient(135deg, #4fc3f7, #1e88e5);
+  --surface-card: #ffffff;
+  --border: #d6ebf5;
+  --diff-insert: #2e7d4f;
+  --diff-insert-bg: rgba(63, 185, 80, 0.18);
+  --diff-delete: #c62828;
+  --shadow: 0 8px 24px rgba(11, 43, 74, 0.08);
+  --sidebar-width: 248px;
+  --sidebar-collapsed: 64px;
+  --tools-width: 280px;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  color: var(--text-primary);
+  line-height: 1.5;
+}

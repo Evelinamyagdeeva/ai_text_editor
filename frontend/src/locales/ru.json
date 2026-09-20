@@ -1,0 +1,128 @@
+{
+  "app": {
+    "title": "AI редактор текста",
+    "newDocument": "Новый документ",
+    "untitled": "Без названия",
+    "save": "Сохранить",
+    "import": "Импорт файла",
+    "settings": "Настройки",
+    "ollamaOk": "Polza подключена",
+    "ollamaFail": "Polza недоступна"
+  },
+  "sidebar": {
+    "newChat": "Новый чат",
+    "chats": "Чаты",
+    "documents": "Документы",
+    "projects": "Проекты",
+    "search": "Поиск",
+    "today": "Сегодня",
+    "yesterday": "Вчера",
+    "earlier": "Ранее",
+    "collapse": "Свернуть панель",
+    "deleteChat": "Удалить чат",
+    "deleteChatConfirm": "Удалить этот чат и всю переписку в нём?",
+    "renameChat": "Переименовать",
+    "renameChatPrompt": "Название чата",
+    "pinChat": "Закрепить",
+    "unpinChat": "Открепить",
+    "pinned": "Закреплённые"
+  },
+  "tools": {
+    "title": "AI-инструменты",
+    "edit": "Правка",
+    "analyze": "Анализ",
+    "create": "Создать",
+    "custom": "Свой запрос",
+    "applyWhole": "Применить ко всему документу",
+    "working": "AI обрабатывает запрос…"
+  },
+  "commands": {
+    "label": "Быстрые команды",
+    "extra": "Дополнительные инструкции",
+    "run": "Запустить AI",
+    "fixGrammar": "Исправить ошибки",
+    "improve": "Улучшить",
+    "shorten": "Сократить",
+    "expand": "Расширить",
+    "simplify": "Упростить",
+    "professional": "Профессионально",
+    "friendly": "Дружелюбно",
+    "natural": "Естественно",
+    "academic": "Академически",
+    "translate": "Перевести",
+    "rephrase": "Перефразировать",
+    "changeTone": "Изменить тон",
+    "persuasive": "Убедительнее",
+    "custom": "Своя инструкция",
+    "summarize": "Суммаризовать",
+    "mainIdeas": "Главные идеи",
+    "keywords": "Ключевые слова",
+    "structure": "Структура",
+    "findRepetitions": "Повторы",
+    "analyzeText": "Анализ текста",
+    "createSummary": "Файл-саммари",
+    "createNotes": "Конспект",
+    "createOutline": "План",
+    "createFaq": "FAQ",
+    "createDocument": "Новый документ",
+    "selectionHint": "Выделение: {{count}} симв."
+  },
+  "agent": {
+    "title": "AI-агент",
+    "placeholder": "Напишите запрос…",
+    "confirm": "Да, выполнить",
+    "revise": "Изменить запрос",
+    "greeting": "Что вы хотите изменить?"
+  },
+  "preview": {
+    "title": "Предложение AI",
+    "accept": "Принять",
+    "reject": "Отклонить",
+    "acceptAll": "Принять всё",
+    "rejectAll": "Отклонить всё",
+    "diff": "Изменения",
+    "metrics": "Показатели качества",
+    "before": "До",
+    "after": "После",
+    "clarity": "Ясность",
+    "readability": "Читабельность",
+    "formality": "Формальность",
+    "critic": "Проверка",
+    "passed": "Проверки пройдены",
+    "issues": "Замечания",
+    "facts": "Факты для проверки",
+    "factNote": "AI не меняет факты автоматически."
+  },
+  "versions": {
+    "title": "История",
+    "original": "Оригинал",
+    "restore": "Восстановить"
+  },
+  "memory": {
+    "title": "Память проекта",
+    "empty": "Память накапливается после принятых правок."
+  },
+  "settingsPanel": {
+    "title": "Настройки",
+    "ollamaUrl": "URL Polza",
+    "polzaUrl": "URL Polza",
+    "model": "Модель",
+    "language": "Язык интерфейса",
+    "close": "Закрыть"
+  },
+  "editor": {
+    "placeholder": "Начните писать…",
+    "dropTitle": "Перетащите файл сюда",
+    "dropHint": "или вставьте текст, или начните писать",
+    "upload": "Загрузить файл",
+    "exportAs": "Сохранить как",
+    "download": "Скачать",
+    "format": {
+      "txt": "Текст (.txt)",
+      "md": "Markdown (.md)",
+      "html": "HTML (.html)",
+      "docx": "Word (.docx)",
+      "pdf": "PDF (.pdf)"
+    }
+  }
+}

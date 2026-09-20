@@ -1,0 +1,128 @@
+{
+  "app": {
+    "title": "AI Text Editor",
+    "newDocument": "New document",
+    "untitled": "Untitled",
+    "save": "Save",
+    "import": "Import file",
+    "settings": "Settings",
+    "ollamaOk": "Polza connected",
+    "ollamaFail": "Polza unavailable"
+  },
+  "sidebar": {
+    "newChat": "New Chat",
+    "chats": "Chats",
+    "documents": "Documents",
+    "projects": "Projects",
+    "search": "Search",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "earlier": "Earlier",
+    "collapse": "Collapse sidebar",
+    "deleteChat": "Delete chat",
+    "deleteChatConfirm": "Delete this chat and all messages in it?",
+    "renameChat": "Rename",
+    "renameChatPrompt": "Chat name",
+    "pinChat": "Pin",
+    "unpinChat": "Unpin",
+    "pinned": "Pinned"
+  },
+  "tools": {
+    "title": "AI Tools",
+    "edit": "Edit",
+    "analyze": "Analyze",
+    "create": "Create",
+    "custom": "Custom Request",
+    "applyWhole": "Apply to entire document",
+    "working": "AI is working…"
+  },
+  "commands": {
+    "label": "Quick commands",
+    "extra": "Additional instructions (optional)",
+    "run": "Run AI",
+    "fixGrammar": "Fix Grammar",
+    "improve": "Improve",
+    "shorten": "Shorten",
+    "expand": "Expand",
+    "simplify": "Simplify",
+    "professional": "Make professional",
+    "friendly": "Make friendly",
+    "natural": "Make natural",
+    "academic": "Make academic",
+    "translate": "Translate",
+    "rephrase": "Rewrite",
+    "changeTone": "Change tone",
+    "persuasive": "More persuasive",
+    "custom": "Custom",
+    "summarize": "Summarize",
+    "mainIdeas": "Main Ideas",
+    "keywords": "Keywords",
+    "structure": "Structure",
+    "findRepetitions": "Find Repetitions",
+    "analyzeText": "Analyze Text",
+    "createSummary": "Create Summary File",
+    "createNotes": "Create Notes",
+    "createOutline": "Create Outline",
+    "createFaq": "Create FAQ",
+    "createDocument": "Create New Document",
+    "selectionHint": "Selection: {{count}} chars"
+  },
+  "agent": {
+    "title": "AI Agent",
+    "placeholder": "Write a request…",
+    "confirm": "Yes, run it",
+    "revise": "Change request",
+    "greeting": "What would you like to change?"
+  },
+  "preview": {
+    "title": "AI proposal",
+    "accept": "Accept",
+    "reject": "Reject",
+    "acceptAll": "Accept all",
+    "rejectAll": "Reject all",
+    "diff": "Changes",
+    "metrics": "Quality metrics",
+    "before": "Before",
+    "after": "After",
+    "clarity": "Clarity",
+    "readability": "Readability",
+    "formality": "Formality",
+    "critic": "Review",
+    "passed": "Checks passed",
+    "issues": "Issues",
+    "facts": "Facts to verify",
+    "factNote": "AI will not change facts automatically."
+  },
+  "versions": {
+    "title": "History",
+    "original": "Original",
+    "restore": "Restore"
+  },
+  "memory": {
+    "title": "Project memory",
+    "empty": "Memory builds as you accept edits."
+  },
+  "settingsPanel": {
+    "title": "Settings",
+    "ollamaUrl": "Polza URL",
+    "polzaUrl": "Polza URL",
+    "model": "Model",
+    "language": "Interface language",
+    "close": "Close"
+  },
+  "editor": {
+    "placeholder": "Start writing…",
+    "dropTitle": "Drop your file here",
+    "dropHint": "or paste text, or start writing",
+    "upload": "Upload file",
+    "exportAs": "Save as",
+    "download": "Download",
+    "format": {
+      "txt": "Plain text (.txt)",
+      "md": "Markdown (.md)",
+      "html": "HTML (.html)",
+      "docx": "Word (.docx)",
+      "pdf": "PDF (.pdf)"
+    }
+  }
+}
