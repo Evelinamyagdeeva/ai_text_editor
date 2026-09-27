@@ -1,0 +1,338 @@
+INFO:     Started server process [315207]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 98] error while attempting to bind on address ('127.0.0.1', 8000): address already in use
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Started server process [316089]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:45444 - "GET /api/commands HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45476 - "GET /api/settings HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45458 - "POST /api/workspace/bootstrap HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45466 - "POST /api/workspace/bootstrap HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45486 - "GET /api/commands HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45490 - "GET /api/settings HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45502 - "GET /api/chats?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45512 - "GET /api/documents?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45516 - "GET /api/chats?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45530 - "GET /api/documents?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45540 - "GET /api/documents/2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45548 - "GET /api/documents/2/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45562 - "GET /api/documents/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45574 - "GET /api/documents/1/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45580 - "GET /api/chats/1/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45582 - "GET /api/chats/1/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43870 - "GET /api/documents/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43874 - "GET /api/documents/1/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43876 - "GET /api/documents/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43886 - "GET /api/documents/1/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43890 - "GET /api/documents/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43902 - "GET /api/documents/1/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43910 - "POST /api/documents/1/import HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39450 - "GET /api/documents/1/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39452 - "GET /api/chats?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39462 - "GET /api/documents?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39446 - "POST /api/documents/1/import HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60754 - "GET /api/documents/1/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60770 - "GET /api/chats?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60778 - "GET /api/documents?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44472 - "POST /api/chats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44486 - "GET /api/chats?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44490 - "GET /api/documents?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44506 - "GET /api/documents/3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44512 - "GET /api/documents/3/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44520 - "GET /api/chats/2/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44526 - "PATCH /api/chats/2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44546 - "GET /api/documents?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44534 - "GET /api/chats?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44548 - "PATCH /api/chats/2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44562 - "GET /api/chats?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44572 - "GET /api/documents?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38452 - "GET /api/chats/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38468 - "GET /api/documents/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38476 - "GET /api/documents/1/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38480 - "GET /api/chats/1/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38484 - "GET /api/chats/2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38490 - "GET /api/documents/3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38496 - "GET /api/documents/3/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38498 - "GET /api/chats/2/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38504 - "GET /api/chats/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38518 - "GET /api/documents/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38530 - "GET /api/documents/1/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38544 - "GET /api/chats/1/messages HTTP/1.1" 200 OK
+Unhandled API error
+Traceback (most recent call last):
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/home/evelina/ai_text_editor/backend/app/main.py", line 306, in export_document
+    return Response(
+           ^^^^^^^^^
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/responses.py", line 44, in __init__
+    self.init_headers(headers)
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/responses.py", line 59, in init_headers
+    raw_headers = [(k.lower().encode("latin-1"), v.encode("latin-1")) for k, v in headers.items()]
+                                                 ^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 22-27: ordinal not in range(256)
+INFO:     127.0.0.1:38546 - "GET /api/documents/1/export?format=docx HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/applications.py", line 113, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/home/evelina/ai_text_editor/backend/app/main.py", line 306, in export_document
+    return Response(
+           ^^^^^^^^^
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/responses.py", line 44, in __init__
+    self.init_headers(headers)
+  File "/root/home/evelina/ai_text_editor/backend/.venv/lib/python3.12/site-packages/starlette/responses.py", line 59, in init_headers
+    raw_headers = [(k.lower().encode("latin-1"), v.encode("latin-1")) for k, v in headers.items()]
+                                                 ^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 22-27: ordinal not in range(256)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [316089]
+INFO:     Started server process [316532]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:46188 - "GET /api/documents/1/export?format=txt HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35956 - "GET /api/commands HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35960 - "GET /api/settings HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35986 - "POST /api/workspace/bootstrap HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35970 - "POST /api/workspace/bootstrap HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36008 - "GET /api/commands HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35996 - "GET /api/settings HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36018 - "GET /api/chats?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36028 - "GET /api/documents?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36036 - "GET /api/chats?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36050 - "GET /api/documents?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36058 - "GET /api/documents/3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36068 - "GET /api/documents/3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36074 - "GET /api/documents/3/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36090 - "GET /api/chats/2/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36092 - "GET /api/documents/3/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36104 - "GET /api/chats/2/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33742 - "POST /api/documents/3/import HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36982 - "GET /api/documents/3/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36992 - "GET /api/chats?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37004 - "GET /api/documents?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34280 - "GET /api/commands HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34260 - "GET /api/settings HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34274 - "POST /api/workspace/bootstrap HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34286 - "POST /api/workspace/bootstrap HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34300 - "GET /api/commands HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34316 - "GET /api/settings HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34338 - "GET /api/documents?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34332 - "GET /api/chats?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34340 - "GET /api/chats?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34350 - "GET /api/documents?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34356 - "GET /api/documents/3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34358 - "GET /api/documents/3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34370 - "GET /api/documents/3/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34384 - "GET /api/documents/3/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34400 - "GET /api/chats/2/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34412 - "GET /api/chats/2/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34414 - "POST /api/chats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34430 - "GET /api/chats?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34446 - "GET /api/documents?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34448 - "GET /api/documents/4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34452 - "GET /api/documents/4/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34456 - "GET /api/chats/3/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34460 - "POST /api/documents/4/import HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35024 - "GET /api/chats/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35032 - "GET /api/chats/2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35034 - "GET /api/chats/3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35036 - "GET /api/chats/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35046 - "GET /api/chats/2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35056 - "GET /api/documents/4/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35064 - "GET /api/documents/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35080 - "GET /api/chats/3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35086 - "GET /api/documents/3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35100 - "GET /api/documents/4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35112 - "GET /api/chats/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35118 - "GET /api/chats/2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35128 - "GET /api/chats?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35130 - "GET /api/documents?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35136 - "GET /api/documents/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35142 - "GET /api/documents/1/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35156 - "GET /api/documents/3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35168 - "GET /api/documents/3/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35182 - "GET /api/documents/4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35196 - "GET /api/documents/4/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34374 - "GET /api/documents/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34390 - "GET /api/documents/1/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34412 - "GET /api/documents/3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34392 - "GET /api/chats/1/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34406 - "GET /api/chats/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34414 - "GET /api/documents/3/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34426 - "GET /api/chats/3/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34416 - "GET /api/chats/2/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34438 - "GET /api/documents/4/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34446 - "GET /api/chats/3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34454 - "GET /api/documents/1/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34462 - "GET /api/chats/1/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34466 - "GET /api/documents/3/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34478 - "GET /api/chats/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34482 - "GET /api/documents/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34490 - "GET /api/chats/2/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34496 - "GET /api/chats/3/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34504 - "GET /api/chats/3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34528 - "GET /api/chats/1/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34520 - "GET /api/documents/4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34536 - "GET /api/chats/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34552 - "GET /api/documents/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34558 - "GET /api/documents/1/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34566 - "GET /api/chats/2/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34582 - "GET /api/documents/4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34602 - "GET /api/documents/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34586 - "GET /api/documents/4/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34608 - "GET /api/documents/1/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34612 - "GET /api/chats/1/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34628 - "GET /api/documents/4/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34634 - "GET /api/documents/1/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34644 - "GET /api/chats/1/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34640 - "GET /api/chats/3/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34658 - "GET /api/chats/3/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34662 - "GET /api/chats/1/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34668 - "GET /api/chats/2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34680 - "GET /api/documents/3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34684 - "GET /api/chats/2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34692 - "GET /api/documents/3/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34694 - "GET /api/documents/3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33704 - "GET /api/chats/2/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33714 - "GET /api/documents/3/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33726 - "GET /api/chats/2/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33734 - "GET /api/documents/3/export?format=docx HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40200 - "POST /api/documents/3/edit HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40184 - "POST /api/documents/3/edit HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53358 - "POST /api/documents/3/edit HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36272 - "GET /api/commands HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36256 - "GET /api/settings HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36280 - "POST /api/workspace/bootstrap HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36284 - "POST /api/workspace/bootstrap HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36302 - "GET /api/commands HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36292 - "GET /api/chats?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36310 - "GET /api/documents?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36318 - "GET /api/settings HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36330 - "GET /api/documents/4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36344 - "GET /api/chats?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36352 - "GET /api/documents?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36382 - "GET /api/commands HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36364 - "GET /api/settings HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36378 - "POST /api/workspace/bootstrap HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36384 - "POST /api/workspace/bootstrap HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36394 - "GET /api/documents/4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36410 - "GET /api/settings HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36422 - "GET /api/commands HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36434 - "GET /api/chats?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36436 - "GET /api/documents?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36442 - "GET /api/documents/4/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36456 - "GET /api/chats?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36462 - "GET /api/documents?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36472 - "GET /api/documents/4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36488 - "GET /api/chats/3/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36492 - "GET /api/documents/4/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36494 - "GET /api/documents/4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36508 - "GET /api/documents/4/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36514 - "GET /api/chats/3/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36516 - "GET /api/documents/4/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36532 - "GET /api/chats/3/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36544 - "GET /api/chats/3/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53348 - "POST /api/documents/3/edit HTTP/1.1" 502 Bad Gateway
+INFO:     127.0.0.1:38500 - "GET /api/commands HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38488 - "GET /api/settings HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38502 - "POST /api/workspace/bootstrap HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38510 - "POST /api/workspace/bootstrap HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38516 - "GET /api/commands HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38528 - "GET /api/settings HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38544 - "GET /api/chats?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38558 - "GET /api/documents?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38568 - "GET /api/chats?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38574 - "GET /api/documents?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38586 - "GET /api/documents/4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38588 - "GET /api/documents/4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38596 - "GET /api/documents/4/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38600 - "GET /api/documents/4/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38610 - "GET /api/chats/3/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38612 - "GET /api/chats/3/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43230 - "GET /api/settings HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43232 - "POST /api/workspace/bootstrap HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43242 - "GET /api/commands HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43254 - "POST /api/workspace/bootstrap HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43268 - "GET /api/settings HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43280 - "GET /api/commands HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43290 - "GET /api/chats?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43304 - "GET /api/documents?project_id=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48320 - "GET /api/documents/4 HTTP/1.1" 200 OK

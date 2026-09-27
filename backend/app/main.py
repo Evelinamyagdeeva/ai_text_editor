@@ -3,7 +3,9 @@ from __future__ import annotations
 import json
 import logging
 import re
+from pathlib import Path
 from typing import Any
+from urllib.parse import quote
 
 import aiosqlite
 from fastapi import FastAPI, File, HTTPException, Request, UploadFile
@@ -279,6 +281,14 @@ def _safe_filename(title: str, ext: str) -> str:
     return f"{base}{ext}"
 
 
+def _content_disposition_attachment(filename: str) -> str:
+    ext = Path(filename).suffix
+    ascii_stem = re.sub(r"[^\w\-]", "_", Path(filename).stem, flags=re.ASCII).strip("_")[:80]
+    ascii_name = f"{ascii_stem or 'document'}{ext}"
+    encoded = quote(filename, safe="")
+    return f'attachment; filename="{ascii_name}"; filename*=UTF-8\'\'{encoded}'
+
+
 @app.get("/api/documents/{doc_id}/export")
 async def export_document(doc_id: int, format: str = "txt") -> Response:
     fmt = format.lower().strip()
@@ -306,7 +316,7 @@ async def export_document(doc_id: int, format: str = "txt") -> Response:
         return Response(
             content=data,
             media_type=media_type,
-            headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+            headers={"Content-Disposition": _content_disposition_attachment(filename)},
         )
     finally:
         await db.close()
