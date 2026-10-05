@@ -25,7 +25,11 @@
     "renameChatPrompt": "Chat name",
     "pinChat": "Pin",
     "unpinChat": "Unpin",
-    "pinned": "Pinned"
+    "pinned": "Pinned",
+    "renameDocument": "Rename",
+    "renameDocumentPrompt": "Document name",
+    "deleteDocument": "Delete document",
+    "deleteDocumentConfirm": "Delete this document and all its versions?"
   },
   "tools": {
     "title": "AI Tools",
@@ -68,11 +72,14 @@
     "selectionHint": "Selection: {{count}} chars"
   },
   "agent": {
-    "title": "AI Agent",
-    "placeholder": "Write a request…",
+    "title": "Custom instruction",
+    "placeholder": "e.g. make the text shorter and friendlier…",
+    "customHint": "Describe the change. With “apply to whole document” checked, the full text is edited; otherwise only the selection.",
     "confirm": "Yes, run it",
     "revise": "Change request",
-    "greeting": "What would you like to change?"
+    "greeting": "Enter your instruction below and send — you’ll get an edit preview.",
+    "userLabel": "You",
+    "aiLabel": "AI"
   },
   "preview": {
     "title": "AI proposal",
@@ -91,7 +98,8 @@
     "passed": "Checks passed",
     "issues": "Issues",
     "facts": "Facts to verify",
-    "factNote": "AI will not change facts automatically."
+    "factNote": "AI will not change facts automatically.",
+    "resizeHint": "Drag the bar above to resize"
   },
   "versions": {
     "title": "History",

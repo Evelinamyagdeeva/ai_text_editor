@@ -103,6 +103,21 @@ export type ConfirmResult = {
   content?: string;
 };
 
+export function parseContentDisposition(header: string | null, fallback: string): string {
+  if (!header) return fallback;
+  const star = /filename\*=UTF-8''([^;\s]+)/i.exec(header);
+  if (star?.[1]) {
+    try {
+      return decodeURIComponent(star[1]);
+    } catch {
+      /* ignore */
+    }
+  }
+  const quoted = /filename="([^"]+)"/i.exec(header);
+  if (quoted?.[1]) return quoted[1];
+  return fallback;
+}
+
 export function formatApiError(raw: string): string {
   const text = raw.trim();
   if (!text) return raw;
@@ -170,9 +185,10 @@ export const api = {
       throw new Error(formatApiError(text || res.statusText));
     }
     const blob = await res.blob();
-    const dispo = res.headers.get("Content-Disposition") || "";
-    const match = /filename="([^"]+)"/.exec(dispo);
-    const filename = match?.[1] || `document.${format}`;
+    const filename = parseContentDisposition(
+      res.headers.get("Content-Disposition"),
+      `document.${format}`,
+    );
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
@@ -191,6 +207,8 @@ export const api = {
       method: "PATCH",
       body: JSON.stringify(patch),
     }),
+  deleteDocument: (id: number) =>
+    jsonFetch<{ ok: boolean }>(`/api/documents/${id}`, { method: "DELETE" }),
   listVersions: (id: number) => jsonFetch<VersionMeta[]>(`/api/documents/${id}/versions`),
   restoreVersion: (docId: number, versionId: number) =>
     jsonFetch<{ content: string }>(`/api/documents/${docId}/restore/${versionId}`, {

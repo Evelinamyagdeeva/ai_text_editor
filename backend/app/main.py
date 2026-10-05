@@ -247,9 +247,10 @@ async def update_document(doc_id: int, body: DocumentUpdate) -> dict[str, Any]:
             if not await cur.fetchone():
                 raise HTTPException(404, "Document not found")
         if body.title is not None:
+            title = body.title.strip() or "Untitled"
             await db.execute(
                 "UPDATE documents SET title = ?, updated_at = datetime('now') WHERE id = ?",
-                (body.title, doc_id),
+                (title, doc_id),
             )
         if body.content is not None:
             await db.execute(
@@ -258,6 +259,20 @@ async def update_document(doc_id: int, body: DocumentUpdate) -> dict[str, Any]:
             )
         await db.commit()
         return await _document_payload(db, doc_id)
+    finally:
+        await db.close()
+
+
+@app.delete("/api/documents/{doc_id}")
+async def delete_document(doc_id: int) -> dict[str, bool]:
+    db = await get_db()
+    try:
+        async with db.execute("SELECT id FROM documents WHERE id = ?", (doc_id,)) as cur:
+            if not await cur.fetchone():
+                raise HTTPException(404, "Document not found")
+        await db.execute("DELETE FROM documents WHERE id = ?", (doc_id,))
+        await db.commit()
+        return {"ok": True}
     finally:
         await db.close()
 
@@ -462,6 +477,7 @@ async def accept_edit(doc_id: int, body: AcceptProposal) -> dict[str, Any]:
         before_plain = html_to_plain(row["content"])
         after_html = plain_text_to_html(body.proposed_full_text)
         label = body.label or body.command_id
+        project_id = row["project_id"]
 
         async with db.execute(
             "SELECT id FROM versions WHERE document_id = ? ORDER BY id DESC LIMIT 1",
@@ -469,6 +485,33 @@ async def accept_edit(doc_id: int, body: AcceptProposal) -> dict[str, Any]:
         ) as cur:
             last = await cur.fetchone()
         parent_id = last["id"] if last else None
+
+        async with db.execute(
+            "SELECT memory_json FROM document_memory WHERE document_id = ?", (doc_id,)
+        ) as cur:
+            mem_row = await cur.fetchone()
+        memory = parse_json_field(mem_row["memory_json"] if mem_row else None)
+
+        async with db.execute("SELECT profile_json FROM user_style WHERE id = 1") as cur:
+            style_row = await cur.fetchone()
+        profile = parse_json_field(style_row["profile_json"] if style_row else None)
+
+        project_memory: dict[str, Any] = {}
+        doc_titles: list[str] = []
+        if project_id:
+            async with db.execute(
+                "SELECT memory_json FROM projects WHERE id = ?", (project_id,)
+            ) as cur:
+                prow = await cur.fetchone()
+            project_memory = parse_json_field(prow["memory_json"] if prow else None)
+            async with db.execute(
+                "SELECT title FROM documents WHERE project_id = ?", (project_id,)
+            ) as cur:
+                doc_titles = [r["title"] for r in await cur.fetchall()]
+
+        ollama_url = await get_setting(db, "polza_base_url", settings.polza_ai_base_url)
+        ollama_model = await get_setting(db, "polza_model", settings.polza_ai_model_name)
+        instruction = body.custom_instruction or body.command_id
 
         await db.execute(
             "UPDATE documents SET content = ?, updated_at = datetime('now') WHERE id = ?",
@@ -480,74 +523,59 @@ async def accept_edit(doc_id: int, body: AcceptProposal) -> dict[str, Any]:
             (doc_id, label, after_html, body.command_id, body.custom_instruction, parent_id),
         )
         version_id = cur.lastrowid
+        await db.commit()
+    finally:
+        await db.close()
 
-        ollama_url = await get_setting(db, "polza_base_url", settings.polza_ai_base_url)
-        ollama_model = await get_setting(db, "polza_model", settings.polza_ai_model_name)
-
-        new_memory: dict[str, Any] = {}
-        try:
-            async with db.execute(
-                "SELECT memory_json FROM document_memory WHERE document_id = ?", (doc_id,)
-            ) as cur:
-                mem_row = await cur.fetchone()
-            memory = parse_json_field(mem_row["memory_json"] if mem_row else None)
-
-            instruction = body.custom_instruction or body.command_id
-            new_memory = await update_document_memory(
-                current_memory=memory,
+    new_memory: dict[str, Any] = {}
+    new_profile = profile
+    pm = project_memory
+    try:
+        new_memory = await update_document_memory(
+            current_memory=memory,
+            document_excerpt=body.proposed_full_text,
+            last_instruction=instruction,
+            ollama_url=ollama_url,
+            model=ollama_model,
+        )
+        new_profile = await refine_style_profile(
+            profile,
+            before_plain,
+            body.proposed_full_text,
+            ollama_url,
+            ollama_model,
+        )
+        pm = project_memory
+        if project_id:
+            pm = await update_project_memory(
+                current_memory=project_memory,
                 document_excerpt=body.proposed_full_text,
                 last_instruction=instruction,
+                linked_files=doc_titles,
                 ollama_url=ollama_url,
                 model=ollama_model,
             )
-            await db.execute(
+            new_memory = {**new_memory, "project": pm}
+
+        db2 = await get_db()
+        try:
+            await db2.execute(
                 "UPDATE document_memory SET memory_json = ?, updated_at = datetime('now') WHERE document_id = ?",
                 (json.dumps(new_memory, ensure_ascii=False), doc_id),
             )
-
-            project_id = row["project_id"]
             if project_id:
-                async with db.execute(
-                    "SELECT memory_json FROM projects WHERE id = ?", (project_id,)
-                ) as cur:
-                    prow = await cur.fetchone()
-                pm = parse_json_field(prow["memory_json"] if prow else None)
-                async with db.execute(
-                    "SELECT title FROM documents WHERE project_id = ?", (project_id,)
-                ) as cur:
-                    titles = [r["title"] for r in await cur.fetchall()]
-                pm = await update_project_memory(
-                    current_memory=pm,
-                    document_excerpt=body.proposed_full_text,
-                    last_instruction=instruction,
-                    linked_files=titles,
-                    ollama_url=ollama_url,
-                    model=ollama_model,
-                )
-                await db.execute(
+                await db2.execute(
                     "UPDATE projects SET memory_json = ?, updated_at = datetime('now') WHERE id = ?",
                     (json.dumps(pm, ensure_ascii=False), project_id),
                 )
-                new_memory = {**new_memory, "project": pm}
-
-            async with db.execute("SELECT profile_json FROM user_style WHERE id = 1") as cur:
-                style_row = await cur.fetchone()
-            profile = parse_json_field(style_row["profile_json"] if style_row else None)
-            new_profile = await refine_style_profile(
-                profile,
-                before_plain,
-                body.proposed_full_text,
-                ollama_url,
-                ollama_model,
-            )
-            await db.execute(
+            await db2.execute(
                 "UPDATE user_style SET profile_json = ?, updated_at = datetime('now') WHERE id = 1",
                 (json.dumps(new_profile, ensure_ascii=False),),
             )
-        except OllamaError:
-            pass
+            await db2.commit()
+        finally:
+            await db2.close()
+    except OllamaError:
+        pass
 
-        await db.commit()
-        return {"version_id": version_id, "content": after_html, "memory": new_memory}
-    finally:
-        await db.close()
+    return {"version_id": version_id, "content": after_html, "memory": new_memory}

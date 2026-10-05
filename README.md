@@ -27,7 +27,7 @@ cd backend
 python3 -m venv .venv
 source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-uvicorn app.main:app --reload --port 8000
+uvicorn app.main:app --reload --port 8001
 ```
 
 ### Frontend
@@ -59,3 +59,5 @@ frontend/    React, TipTap, i18n, diff UI
 ## Optional: desktop (Tauri)
 
 A Tauri wrapper can be added later to bundle the web UI; the core app is designed as a local web stack first.
+
+

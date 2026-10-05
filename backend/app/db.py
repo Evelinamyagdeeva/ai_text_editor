@@ -133,6 +133,8 @@ async def get_db() -> aiosqlite.Connection:
     db = await aiosqlite.connect(path)
     db.row_factory = aiosqlite.Row
     await db.execute("PRAGMA foreign_keys = ON")
+    await db.execute("PRAGMA journal_mode = WAL")
+    await db.execute("PRAGMA busy_timeout = 10000")
     await db.executescript(SCHEMA)
     await _ensure_columns(db)
     await db.execute(

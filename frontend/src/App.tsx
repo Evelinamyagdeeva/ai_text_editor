@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { CustomAgentPanel } from "./components/agent/CustomAgentPanel";
 import { EditorWorkspace } from "./components/editor/EditorWorkspace";
 import { ProposalPanel } from "./components/ProposalPanel";
+import { ResizablePreviewStrip } from "./components/ResizablePreviewStrip";
 import { SettingsModal } from "./components/SettingsModal";
 import { Sidebar } from "./components/sidebar/Sidebar";
 import { AIToolsPanel } from "./components/tools/AIToolsPanel";
@@ -48,6 +49,7 @@ function App() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [intent, setIntent] = useState<IntentResult | null>(null);
   const [lastUserMessage, setLastUserMessage] = useState("");
+  const [accepting, setAccepting] = useState(false);
 
   const refreshLists = useCallback(async (projectId?: number | null) => {
     const [c, d] = await Promise.all([
@@ -186,26 +188,25 @@ function App() {
     }
   };
 
-  const sendAgent = async (text: string) => {
+  const sendCustomInstruction = async (text: string) => {
     setLastUserMessage(text);
+    setIntent(null);
     setLoading(true);
     setError(null);
     try {
       const { doc: currentDoc, chatId } = await ensureWorkspace();
       const { start, end } = rangeForEdit();
-      const result = await api.agentIntent({
-        chat_id: chatId,
-        document_id: currentDoc.id,
-        message: text,
-        content: htmlToPlain(content),
+      const plain = htmlToPlain(content);
+      const result = await api.proposeEdit(currentDoc.id, {
+        command_id: "custom",
+        custom_instruction: text,
+        content: plain,
         selection_start: start,
         selection_end: end,
       });
-      setIntent(result);
+      setProposal(result);
+      setAgentOpen(false);
       await loadMessages(chatId);
-      if (!result.needs_clarification) {
-        await confirmAgent(result, text, currentDoc, chatId);
-      }
     } catch (e) {
       showError(e);
     } finally {
@@ -257,7 +258,13 @@ function App() {
   };
 
   const acceptProposal = async () => {
-    if (!doc || !proposal) return;
+    if (!doc || !proposal || accepting) return;
+    if (saveTimerRef.current) {
+      clearTimeout(saveTimerRef.current);
+      saveTimerRef.current = null;
+    }
+    setAccepting(true);
+    setError(null);
     try {
       const res = await api.acceptEdit(doc.id, {
         proposed_full_text: proposal.proposed_full_text,
@@ -265,11 +272,14 @@ function App() {
         label: proposal.command_id,
       });
       setContent(res.content);
+      setDoc((d) => (d ? { ...d, content: res.content } : d));
       setProposal(null);
       setVersions(await api.listVersions(doc.id));
       await refreshLists(activeProjectId);
     } catch (e) {
       showError(e);
+    } finally {
+      setAccepting(false);
     }
   };
 
@@ -326,6 +336,38 @@ function App() {
     }
   };
 
+  const onRenameDocument = async (id: number, title: string) => {
+    try {
+      const updated = await api.updateDocument(id, { title });
+      await refreshLists(activeProjectId);
+      if (doc?.id === id) setDoc(updated);
+    } catch (e) {
+      showError(e);
+    }
+  };
+
+  const onDeleteDocument = async (id: number) => {
+    try {
+      await api.deleteDocument(id);
+      const nextDocs = await api.listDocuments(activeProjectId ?? undefined);
+      setDocuments(nextDocs);
+      if (doc?.id === id) {
+        setProposal(null);
+        if (nextDocs.length) {
+          const prefer =
+            nextDocs.find((d) => d.chat_id === activeChatId) ?? nextDocs[0];
+          await loadDoc(prefer.id);
+        } else {
+          setDoc(null);
+          setContent("<p></p>");
+          setVersions([]);
+        }
+      }
+    } catch (e) {
+      showError(e);
+    }
+  };
+
   const onDeleteChat = async (id: number) => {
     try {
       await api.deleteChat(id);
@@ -345,14 +387,14 @@ function App() {
   const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const saveContent = useCallback(
     (html: string) => {
-      if (!doc) return;
+      if (!doc || accepting) return;
       const docId = doc.id;
       if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
       saveTimerRef.current = setTimeout(() => {
         void api.updateDocument(docId, { content: html }).catch(showError);
       }, 450);
     },
-    [doc],
+    [accepting, doc],
   );
 
   const patchSettings = async (patch: Partial<AppSettings>) => {
@@ -382,6 +424,8 @@ function App() {
             onRenameChat={(id, title) => void onRenameChat(id, title)}
             onPinChat={(id, pinned) => void onPinChat(id, pinned)}
             onDeleteChat={(id) => void onDeleteChat(id)}
+            onRenameDocument={(id, title) => void onRenameDocument(id, title)}
+            onDeleteDocument={(id) => void onDeleteDocument(id)}
             onSettings={() => setSettingsOpen(true)}
           />
         }
@@ -393,6 +437,7 @@ function App() {
               </div>
             )}
             {loading && <div className="ai-busy" role="status">{t("tools.working")}</div>}
+            <div className="editor-main">
             <EditorWorkspace
               content={content}
               onChange={(html) => {
@@ -406,7 +451,10 @@ function App() {
                 const cmd = commands.find((c) => c.id === id);
                 if (cmd) void runTool(cmd);
               }}
-              onCustom={() => setAgentOpen(true)}
+              onCustom={() => {
+                setIntent(null);
+                setAgentOpen(true);
+              }}
               onUpload={async (file) => {
                 try {
                   let current = doc;
@@ -437,15 +485,16 @@ function App() {
               canExport={Boolean(doc)}
               onExport={(format) => void onExportDocument(format)}
             />
+            </div>
             {proposal && (
-              <div className="preview-strip">
+              <ResizablePreviewStrip>
                 <ProposalPanel
                   proposal={proposal}
-                  loading={loading}
+                  loading={loading || accepting}
                   onAccept={() => void acceptProposal()}
                   onReject={() => setProposal(null)}
                 />
-              </div>
+              </ResizablePreviewStrip>
             )}
           </div>
         }
@@ -457,7 +506,7 @@ function App() {
               messages={messages}
               loading={loading}
               awaitingConfirm={Boolean(intent?.needs_clarification)}
-              onSend={(t) => void sendAgent(t)}
+              onSend={(t) => void sendCustomInstruction(t)}
               onConfirm={() => void confirmAgent()}
               onRevise={() => setIntent(null)}
             />
@@ -466,7 +515,10 @@ function App() {
               commands={commands}
               loading={loading}
               onTool={(c) => void runTool(c)}
-              onCustom={() => setAgentOpen(true)}
+              onCustom={() => {
+                setIntent(null);
+                setAgentOpen(true);
+              }}
             />
           )
         }

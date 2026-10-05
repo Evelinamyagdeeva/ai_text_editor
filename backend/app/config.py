@@ -16,7 +16,7 @@ class Settings(BaseSettings):
 
     polza_ai_base_url: str = "https://polza.ai/api/v1"
     polza_ai_api_key: str = ""
-    polza_ai_model_name: str = "deepseek/deepseek-v4.1-flash"
+    polza_ai_model_name: str = "openai/gpt-6-luna"
 
     ui_locale: str = Field(default="ru", validation_alias=AliasChoices("EDITOR_UI_LOCALE", "UI_LOCALE"))
     data_dir: Path = Field(

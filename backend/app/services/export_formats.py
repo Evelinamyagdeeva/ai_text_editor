@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import io
 import re
-from html import unescape
+from html import escape, unescape
 
 from app.services.text_utils import html_to_plain
 
@@ -22,7 +22,7 @@ def export_md(html: str, title: str = "") -> bytes:
 
 
 def export_html(html: str, title: str = "") -> bytes:
-    safe_title = unescape(title) or "Document"
+    safe_title = escape(unescape(title) or "Document")
     doc = f"""<!DOCTYPE html>
 <html lang="ru"><head><meta charset="utf-8"><title>{safe_title}</title></head>
 <body>{html}</body></html>"""
@@ -48,7 +48,20 @@ def export_docx(html: str, title: str = "") -> bytes:
 def export_pdf(html: str, title: str = "") -> bytes:
     from xhtml2pdf import pisa
 
-    body = export_html(html, title).decode("utf-8")
+    safe_title = escape(unescape(title) or "Document")
+    plain = html_to_plain(html)
+    body_parts = "".join(f"<p>{escape(line.strip())}</p>" for line in plain.split("\n") if line.strip())
+    if not body_parts:
+        body_parts = "<p></p>"
+    pdf_html = f"""<!DOCTYPE html>
+<html><head><meta charset="utf-8"/><title>{safe_title}</title>
+<style>@page {{ margin: 2cm; }} body {{ font-family: Helvetica, Arial, sans-serif; font-size: 12pt; }}</style>
+</head><body>{body_parts}</body></html>"""
     buf = io.BytesIO()
-    pisa.CreatePDF(body, dest=buf, encoding="utf-8")
-    return buf.getvalue()
+    status = pisa.CreatePDF(pdf_html, dest=buf, encoding="utf-8")
+    if status.err:
+        raise RuntimeError("PDF generation failed (try DOCX or HTML for Cyrillic text)")
+    data = buf.getvalue()
+    if not data:
+        raise RuntimeError("PDF export produced empty file")
+    return data

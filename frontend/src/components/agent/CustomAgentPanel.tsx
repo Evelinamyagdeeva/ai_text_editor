@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import type { ChatMessage } from "../../lib/api";
 
@@ -25,21 +25,37 @@ export function CustomAgentPanel({
 }: Props) {
   const { t } = useTranslation();
   const [draft, setDraft] = useState("");
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const id = window.setTimeout(() => textareaRef.current?.focus(), 50);
+    return () => window.clearTimeout(id);
+  }, [open]);
+
   if (!open) return null;
+
+  const submit = () => {
+    const text = draft.trim();
+    if (!text || loading) return;
+    onSend(text);
+    setDraft("");
+  };
 
   return (
     <div className="agent-drawer">
       <header className="agent-head">
         <h2>✨ {t("agent.title")}</h2>
-        <button type="button" className="icon-btn" onClick={onClose}>
+        <button type="button" className="icon-btn" onClick={onClose} aria-label={t("settingsPanel.close")}>
           ×
         </button>
       </header>
+      <p className="agent-hint">{t("agent.customHint")}</p>
       <div className="agent-body">
         {messages.length === 0 && <p className="bubble ai">{t("agent.greeting")}</p>}
         {messages.map((m) => (
           <div key={m.id} className={m.role === "user" ? "bubble user" : "bubble ai"}>
-            <strong>{m.role === "user" ? "User" : "AI"}</strong>
+            <strong>{m.role === "user" ? t("agent.userLabel") : t("agent.aiLabel")}</strong>
             <p>{m.content}</p>
           </div>
         ))}
@@ -53,25 +69,34 @@ export function CustomAgentPanel({
             </button>
           </div>
         )}
-        {loading && <p className="muted">…</p>}
+        {loading && <p className="muted">{t("tools.working")}</p>}
       </div>
       <form
         className="agent-input"
         onSubmit={(e) => {
           e.preventDefault();
-          if (!draft.trim()) return;
-          onSend(draft.trim());
-          setDraft("");
+          submit();
         }}
       >
-        <input
-          value={draft}
-          onChange={(e) => setDraft(e.target.value)}
-          placeholder={t("agent.placeholder")}
-        />
-        <button type="submit" className="btn primary" disabled={loading}>
-          ➤
-        </button>
+        <div className="agent-input-row">
+          <textarea
+            ref={textareaRef}
+            value={draft}
+            onChange={(e) => setDraft(e.target.value)}
+            placeholder={t("agent.placeholder")}
+            rows={3}
+            disabled={loading}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                submit();
+              }
+            }}
+          />
+          <button type="submit" className="btn primary" disabled={loading || !draft.trim()}>
+            ➤
+          </button>
+        </div>
       </form>
     </div>
   );

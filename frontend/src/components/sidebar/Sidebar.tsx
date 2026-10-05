@@ -17,10 +17,13 @@ type Props = {
   onRenameChat: (id: number, title: string) => void;
   onPinChat: (id: number, pinned: boolean) => void;
   onDeleteChat: (id: number) => void;
+  onRenameDocument: (id: number, title: string) => void;
+  onDeleteDocument: (id: number) => void;
   onSettings: () => void;
 };
 
 type ChatMenu = { x: number; y: number; chatId: number };
+type DocMenu = { x: number; y: number; docId: number };
 
 function dayGroup(iso: string): "today" | "yesterday" | "earlier" {
   const d = new Date(iso.includes("T") ? iso : iso.replace(" ", "T") + "Z");
@@ -74,10 +77,13 @@ export function Sidebar({
   onRenameChat,
   onPinChat,
   onDeleteChat,
+  onRenameDocument,
+  onDeleteDocument,
   onSettings,
 }: Props) {
   const { t } = useTranslation();
   const [chatMenu, setChatMenu] = useState<ChatMenu | null>(null);
+  const [docMenu, setDocMenu] = useState<DocMenu | null>(null);
   const q = search.toLowerCase();
   const filteredChats = chats.filter((c) => c.title.toLowerCase().includes(q));
   const filteredDocs = documents.filter((d) => d.title.toLowerCase().includes(q));
@@ -93,22 +99,34 @@ export function Sidebar({
   }, [filteredChats]);
 
   const menuChat = chatMenu ? chats.find((c) => c.id === chatMenu.chatId) : null;
+  const menuDoc = docMenu ? documents.find((d) => d.id === docMenu.docId) : null;
 
   useEffect(() => {
-    if (!chatMenu) return;
-    const close = () => setChatMenu(null);
+    if (!chatMenu && !docMenu) return;
+    const close = () => {
+      setChatMenu(null);
+      setDocMenu(null);
+    };
     window.addEventListener("click", close);
     window.addEventListener("scroll", close, true);
     return () => {
       window.removeEventListener("click", close);
       window.removeEventListener("scroll", close, true);
     };
-  }, [chatMenu]);
+  }, [chatMenu, docMenu]);
 
   const openChatMenu = (e: React.MouseEvent, chatId: number) => {
     e.preventDefault();
     e.stopPropagation();
+    setDocMenu(null);
     setChatMenu({ x: e.clientX, y: e.clientY, chatId });
+  };
+
+  const openDocMenu = (e: React.MouseEvent, docId: number) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setChatMenu(null);
+    setDocMenu({ x: e.clientX, y: e.clientY, docId });
   };
 
   const renameChat = (chatId: number, currentTitle: string) => {
@@ -119,9 +137,22 @@ export function Sidebar({
     if (title) onRenameChat(chatId, title);
   };
 
-  const confirmDelete = (chatId: number) => {
+  const confirmDeleteChat = (chatId: number) => {
     setChatMenu(null);
     if (window.confirm(t("sidebar.deleteChatConfirm"))) onDeleteChat(chatId);
+  };
+
+  const renameDocument = (docId: number, currentTitle: string) => {
+    setDocMenu(null);
+    const next = window.prompt(t("sidebar.renameDocumentPrompt"), currentTitle);
+    if (next === null) return;
+    const title = next.trim();
+    if (title) onRenameDocument(docId, title);
+  };
+
+  const confirmDeleteDocument = (docId: number) => {
+    setDocMenu(null);
+    if (window.confirm(t("sidebar.deleteDocumentConfirm"))) onDeleteDocument(docId);
   };
 
   return (
@@ -203,6 +234,7 @@ export function Sidebar({
                     type="button"
                     className={d.id === activeDocId ? "nav-item active" : "nav-item"}
                     onClick={() => onSelectDoc(d.id)}
+                    onContextMenu={(e) => openDocMenu(e, d.id)}
                   >
                     📄 {d.title}
                   </button>
@@ -239,8 +271,31 @@ export function Sidebar({
           >
             {menuChat.pinned ? t("sidebar.unpinChat") : t("sidebar.pinChat")}
           </button>
-          <button type="button" className="context-menu-item danger" onClick={() => confirmDelete(menuChat.id)}>
+          <button type="button" className="context-menu-item danger" onClick={() => confirmDeleteChat(menuChat.id)}>
             {t("sidebar.deleteChat")}
+          </button>
+        </div>
+      )}
+      {docMenu && menuDoc && (
+        <div
+          className="context-menu"
+          style={{ top: docMenu.y, left: docMenu.x }}
+          role="menu"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button
+            type="button"
+            className="context-menu-item"
+            onClick={() => renameDocument(menuDoc.id, menuDoc.title)}
+          >
+            {t("sidebar.renameDocument")}
+          </button>
+          <button
+            type="button"
+            className="context-menu-item danger"
+            onClick={() => confirmDeleteDocument(menuDoc.id)}
+          >
+            {t("sidebar.deleteDocument")}
           </button>
         </div>
       )}

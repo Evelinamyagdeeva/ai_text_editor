@@ -66,16 +66,16 @@ export function ProposalPanel({ proposal, loading, onAccept, onReject }: Props) 
     <aside className="side-panel">
       <h2>{t("preview.title")}</h2>
       <div className="panel-actions">
-        <button type="button" className="btn primary" onClick={onAccept}>
+        <button type="button" className="btn primary" onClick={onAccept} disabled={loading}>
           {t("preview.accept")}
         </button>
-        <button type="button" className="btn primary" onClick={onAccept}>
+        <button type="button" className="btn primary" onClick={onAccept} disabled={loading}>
           {t("preview.acceptAll")}
         </button>
-        <button type="button" className="btn" onClick={onReject}>
+        <button type="button" className="btn" onClick={onReject} disabled={loading}>
           {t("preview.reject")}
         </button>
-        <button type="button" className="btn" onClick={onReject}>
+        <button type="button" className="btn" onClick={onReject} disabled={loading}>
           {t("preview.rejectAll")}
         </button>
       </div>
