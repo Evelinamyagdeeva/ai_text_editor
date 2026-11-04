@@ -431,11 +431,6 @@ function App() {
         }
         editor={
           <div className="center-column">
-            {settings && (
-              <div className={settings.ollama_connected ? "status-pill ok" : "status-pill warn"}>
-                {settings.ollama_connected ? "Polza" : "Polza off"}
-              </div>
-            )}
             {loading && <div className="ai-busy" role="status">{t("tools.working")}</div>}
             <div className="editor-main">
             <EditorWorkspace

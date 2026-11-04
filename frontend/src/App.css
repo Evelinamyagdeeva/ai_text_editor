@@ -172,17 +172,6 @@ body {
   flex-direction: column;
 }
 
-.status-pill {
-  position: absolute;
-  top: 0.6rem;
-  right: 1rem;
-  font-size: 0.72rem;
-  padding: 0.15rem 0.5rem;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  z-index: 2;
-}
-
 .ai-busy {
   position: absolute;
   top: 2.5rem;
@@ -227,14 +216,6 @@ body {
 
 .context-menu-item.danger {
   color: var(--diff-delete);
-}
-
-.status-pill.ok {
-  color: var(--diff-insert);
-}
-
-.status-pill.warn {
-  color: #b26a00;
 }
 
 .editor-column {
